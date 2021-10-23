@@ -66,10 +66,8 @@ void verArbol(raiz arbol, int n)
      if(arbol==NULL)
           return;
      verArbol(arbol->der, n+1);
-
      for(int i=0; i<n; i++)
          cout<<"   ";
-
      cout<< arbol->data <<endl;
      verArbol(arbol->izq, n+1);
 }
@@ -78,7 +76,6 @@ raiz unirraiz(raiz izq, raiz der)
 {
     if(izq==NULL) return der;
     if(der==NULL) return izq;
-
     raiz centro = unirraiz(izq->der, der->izq);
     izq->der = centro;
     der->izq = izq;
@@ -88,7 +85,6 @@ raiz unirraiz(raiz izq, raiz der)
 void remove(raiz &arbol, int x)
 {
      if(arbol==NULL) return;
-
      if(x<arbol->data)
          remove(arbol->izq, x);
      else if(x>arbol->data)
@@ -105,14 +101,12 @@ void remove(raiz &arbol, int x)
 int height(raiz arbol)
 {
     int AltI, AltD;
-
     if(arbol==NULL)
         return -1;
     else
     {
         AltI = height(arbol->izq);
         AltD = height(arbol->der);
-
         if(AltI>AltD)
             return AltI+1;
         else
@@ -157,7 +151,7 @@ void InorderITE(TreeNode *raiz)
 
 void PostorderITE(TreeNode *raiz)
 {
-	if (raiz == NULL)
+    if (raiz == NULL)
         return;
     stack<TreeNode *> s1, s2;
     s1.push(raiz);
@@ -183,26 +177,26 @@ void PostorderITE(TreeNode *raiz)
 int main(){
     raiz arbol = NULL;   
     insertar(arbol, 4);
-	insertar(arbol, 8);
-	insertar(arbol, 2);
-	insertar(arbol, 9);
-	insertar(arbol, 3);
-	insertar(arbol, 6);
-	insertar(arbol, 1);
-	insertar(arbol, 7);
+    insertar(arbol, 8);
+    insertar(arbol, 2);
+    insertar(arbol, 9);
+    insertar(arbol, 3);
+    insertar(arbol, 6);
+    insertar(arbol, 1);
+    insertar(arbol, 7);
 	
-	cout << "RECURSIVO";
+    cout << "RECURSIVO";
     cout << "\n PreOrden:  ";   PreOrder(arbol);
     cout << "\n InOrden:  ";   InOrder(arbol);
     cout << "\n PostOrden:  ";   PostOrder(arbol);
 
- 	cout << "\nITERATIVO";
+    cout << "\nITERATIVO";
     cout << "\n PreOrden:  ";   PreorderITE(arbol);
     cout << "\n InOrden:  ";   InorderITE(arbol);
     cout << "\n PostOrden:  ";   PostorderITE(arbol);
     cout << "\n Mostrando Arbol \n\n";
-	verArbol( arbol, 0);
-	remove(arbol,3);
+    verArbol( arbol, 0);
+    remove(arbol,3);
     cout << "\n Mostrando Arbol \n\n";
     verArbol( arbol, 0);
 }
